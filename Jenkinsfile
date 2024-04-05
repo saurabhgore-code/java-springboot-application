@@ -5,7 +5,7 @@ pipeline {
 	}
     stages
 	{	
-	stage('clone the repo')
+	/* stage('clone the repo')
 		{
 			steps{	
 	 sh 'git clone https://github.com/saurabhgore-code/java-springboot-application.git'
@@ -23,17 +23,18 @@ pipeline {
             sh 'docker run -dt -p 8081:8080 springboot-app'
         }
         }
-	/* stage('login dockerhub'){
+       */
+	 stage('login dockerhub'){
     steps{ 
       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
          }
   }
        stage('Deploy Image') {
           steps{
-              sh 'docker tag mysql saurabhgore70/mysql:delhi'
-              sh 'docker push saurabhgore70/mysql:delhi'
+              sh 'docker tag springboot-app saurabhgore70/springboot-app:v2'
+              sh 'docker push saurabhgore70/springboot-app:v2'
        }
            }
-      */     
+         
     }
 }
