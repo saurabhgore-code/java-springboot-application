@@ -23,7 +23,7 @@ pipeline {
             sh 'docker run -dt -p 8081:8080 springboot-app'
         }
         }
-       */
+       
 	 stage('login dockerhub'){
     steps{ 
       sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
@@ -35,6 +35,17 @@ pipeline {
               sh 'docker push saurabhgore70/springboot-app:v2'
        }
            }
-         
+       */
+  
+   stage("deploy using kubernetes"){
+            steps{
+                sh "kubectl create -f springboot-deployment.yml"
     }
+}
+      stage("create a nodeport service"){
+      steps{
+                sh "kubectl create -f springboot-service.yml"
+    }
+    }
+}
 }
