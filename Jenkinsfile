@@ -39,12 +39,12 @@ pipeline {
   
    stage("deploy using kubernetes"){
             steps{
-                sh "kubectl create -f springboot-deployment.yml"
+                sh "kubectl create -f my-springboot-deployment.yml"
     }
 }
       stage("create a nodeport service"){
       steps{
-                sh "kubectl create -f springboot-service.yml"
+                sh "kubectl create -f my-springboot-service.yml"
     }
     }
 }
